@@ -127,8 +127,8 @@ public class Analysis  implements Serializable{
 		int j=0;
 		for (Tuple2<Long, String> popular:swappedPair.collect()) {
 			j++;
-			if(j>20) {break;}
-			out.print("]\n"+popular._1+",[");
+			if(j>10) {break;}
+			out.print("\n"+popular._1+",");
 			int total=0;
 			double[] hours = new double[24];
 			Arrays.fill(hours, 0.0);
