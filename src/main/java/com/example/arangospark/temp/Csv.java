@@ -26,18 +26,7 @@ public class Csv {
     /*---This loop with parse each CSV file in the Instacart data---*/
     private static void loop(String file,BufferedReader br, Arango db,String[] header) throws ArangoDBException, IOException {
     	String line;
-    	int j=0;
     	while ((line = br.readLine()) != null) {
-    		j++;
-    		if (j%1000==0) {
-    			System.out.println(j);
-    		}
-    		if (j<10000 && file.contains("order")) {
-    			continue;
-    		}
-    		if (j>20000 && file.contains("order")) {
-    			break;
-    		}
     		String[] row = line.split(",");
     		ArrayList<String> meta_key = new ArrayList<String>();
 			ArrayList<String> meta_value = new ArrayList<String>();
