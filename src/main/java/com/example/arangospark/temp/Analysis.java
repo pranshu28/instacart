@@ -128,7 +128,7 @@ public class Analysis  implements Serializable{
 		for (Tuple2<Long, String> popular:swappedPair.collect()) {
 			j++;
 			if(j>20) {break;}
-			System.out.print("]\n"+popular._1+",[");
+			out.print("]\n"+popular._1+",[");
 			int total=0;
 			double[] hours = new double[24];
 			Arrays.fill(hours, 0.0);
@@ -140,7 +140,7 @@ public class Analysis  implements Serializable{
 			}
 			for (int hour=0;hour<24;hour++) {
 				hours[hour] = 100*hours[hour]/total;
-				System.out.print(" "+hours[hour]);
+				out.print(" "+hours[hour]);
 			}
 		}
 		out.close();
