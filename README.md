@@ -11,7 +11,7 @@ Code in `/src/main/java/com/example/arangospark/temp/`
 5. `App.java`: This contains the main function and takes arguments `arg1` and `arg2`: 
     * `0 path/to/instacart/folder`: For building graph in ArangoDB.
     * `1 path/to/save/chart1/`: For building chart 1 analysis. This will create a text file that will have three columns: *AisleName*, *Number of purchased products*, *Percentage of Reordered Products*. 
-    * `2 path/to/save/chart2/`: For building chart 2 analysis. This file will contain top 20 products with columns: *Product Name*, * List: % of product ordered in Hours*. This one slightly differs from that given in the blog. It analyses the hourly distribution of the most popular products overall from the data. 
+    * `2 path/to/save/chart2/`: For building chart 2 analysis. This file will contain top 20 products with columns: *Product Name*, *List: % of product ordered in Hours*. This one slightly differs from that given in the blog. It analyses the hourly distribution of the most popular products overall from the data. 
 
 #### Excecution:
 (Assuming ArangoDB and Spark are already installed.) 
