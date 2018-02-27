@@ -1,6 +1,6 @@
 # instacart
 
-####File description: 
+#### File description: 
 
 Code in `/src/main/java/com/example/arangospark/temp/`
 
@@ -13,7 +13,7 @@ Code in `/src/main/java/com/example/arangospark/temp/`
     * `1 path/to/save/chart1/`: For building chart 1 analysis. This will create a text file that will have three columns: *AisleName*, *Number of purchased products*, *Percentage of Reordered Products*. 
     * `2 path/to/save/chart2/`: For building chart 2 analysis. This file will contain top 20 products with columns: *Product Name*, * List: % of product ordered in Hours*. This one slightly differs from that given in the blog. It analyses the hourly distribution of the most popular products overall from the data. 
 
-####Excecution:
+#### Excecution:
 (Assuming ArangoDB and Spark are already installed.) 
 1. Clone/Download the repository.
 2. Build the jar file with all dependencies using this command:
