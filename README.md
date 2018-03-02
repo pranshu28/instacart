@@ -13,7 +13,7 @@ Code in `/src/main/java/com/example/arangospark/temp/`
     * `1 path/to/save/chart1/`: For building chart 1 analysis. 
     This will create a text file that will have three columns: *AisleName*, *Number of purchased products*, *Percentage of Reordered Products*. Check `chart1_data.txt`.
     * `2 path/to/save/chart2/`: For building chart 2 analysis. 
-    This file will contain top, say 10, products with columns: *Product Name*, *Space-separated list: % of product ordered in 24 Hours*. This one slightly differs from that given in the blog. It analyses the hourly distribution of the most popular products overall from the data. Check `chart2_data.txt`. 
+    This file will contain top, say 10, products with columns: *Product Name*, *Space-separated list: % of product ordered in 24 Hours*. Check `chart2_data.txt`. 
 
 #### Excecution:
 (Assuming ArangoDB and Spark are already installed.) 
