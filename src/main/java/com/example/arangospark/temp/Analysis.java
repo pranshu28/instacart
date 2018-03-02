@@ -112,23 +112,46 @@ public class Analysis  implements Serializable{
 			}).filter(x -> (x._1!=null && x._2!=null));	
 		
 		/*---Count distinct product ordered---*/
-		JavaPairRDD<String, Long> count = product.countApproxDistinctByKey(0.05);
+		JavaPairRDD<String, Long> prod_early = product.filter(i -> i._2<=12).countApproxDistinctByKey(0.05);
+		JavaPairRDD<String, Long> prod_late = product.filter(i -> i._2>12).countApproxDistinctByKey(0.05);
+		
 		/*---Sort the product based on count---*/
-		JavaPairRDD<Long, String> swappedPair = count.mapToPair(
-			new PairFunction<Tuple2<String, Long>, Long, String>() {
+		PairFunction swap = new PairFunction<Tuple2<String, Long>, Long, String>() {
 	           public Tuple2<Long, String> call(Tuple2<String, Long> item) throws Exception {
 	               return item.swap();
 	           }
-	        }).sortByKey(false);
+	        };
+		JavaPairRDD<Long, String> swapped_early = prod_early.mapToPair(swap).sortByKey(false);
+		JavaPairRDD<Long, String> swapped_late = prod_late.mapToPair(swap).sortByKey(false);
+		
 
 		/*---This file will contain top 20 products with columns: Product Name, % order in Hours---*/
 		PrintWriter out = new PrintWriter(new FileWriter(path+"/chart2_data.txt"));
-		out.print("product,hour_distribution");
+		out.print("product,class,hour_distribution");
 		int j=0;
-		for (Tuple2<Long, String> popular:swappedPair.collect()) {
+		for (Tuple2<Long, String> popular:swapped_early.collect()) {
 			j++;
 			if(j>10) {break;}
-			out.print("\n"+popular._2+",");
+			out.print("\n"+popular._2+",early,");
+			int total=0;
+			double[] hours = new double[24];
+			Arrays.fill(hours, 0.0);
+			for (Tuple2<String, Integer> pop:product.filter(e -> e._1.contains(popular._2)).collect()) {
+				if (pop._2>0 && pop._2<25) {
+					total+=1;
+					hours[pop._2-1]+=1;
+				}
+			}
+			for (int hour=0;hour<24;hour++) {
+				hours[hour] = 100*hours[hour]/total;
+				out.print(" "+hours[hour]);
+			}
+		}
+		j=0;
+		for (Tuple2<Long, String> popular:swapped_late.collect()) {
+			j++;
+			if(j>10) {break;}
+			out.print("\n"+popular._2+",late,");
 			int total=0;
 			double[] hours = new double[24];
 			Arrays.fill(hours, 0.0);
@@ -144,6 +167,6 @@ public class Analysis  implements Serializable{
 			}
 		}
 		out.close();
-
 	}
+	
 }
