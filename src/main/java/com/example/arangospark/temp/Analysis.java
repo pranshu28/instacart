@@ -63,7 +63,10 @@ public class Analysis  implements Serializable{
 		late.createOrReplaceTempView("late");
 		Dataset<Row> a_early = spark.sql("select data2.product_name,sort_array(collect_list(data2.order_hour_of_day)) as hours,count(data2.order_hour_of_day) as cntall from data2 inner join early on data2.product_name=early.product_name group by data2.product_name order by cntall");
 		a_early.createOrReplaceTempView("early");
+		Dataset<Row> a_late = spark.sql("select data2.product_name,sort_array(collect_list(data2.order_hour_of_day)) as hours,count(data2.order_hour_of_day) as cntall from data2 inner join late on data2.product_name=late.product_name group by data2.product_name order by cntall");
+		a_late.createOrReplaceTempView("late");
 		a_early.show();
+		a_late.show();
 	}
 	
 	
