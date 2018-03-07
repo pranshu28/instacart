@@ -1,6 +1,6 @@
 # instacart analysis
 
-(Under Construction)*
+(Under Construction)
 
 #### File description: 
 
