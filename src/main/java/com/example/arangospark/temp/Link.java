@@ -18,18 +18,18 @@ public class Link implements Serializable{
 	private String _revision;
 
 	@DocumentField(Type.FROM)
-	private String fromNodeId;
+	private String _from;
 
 	@DocumentField(Type.TO)
-	private String toNodeId;
+	private String _to;
 
 	private String add_to_cart_order,reordered;
 	
 	public Link() {}
 	
-    public Link(String fromNodeId, String toNodeId, String label) {
-        this.fromNodeId = fromNodeId;
-        this.toNodeId = toNodeId;
+    public Link(String _from, String _to, String label) {
+        this._from = _from;
+        this._to = _to;
         this._key = label;
     }
     
@@ -45,15 +45,15 @@ public class Link implements Serializable{
 	public void setadd_to_cart_order(String add_to_cart_order) {
 		this.add_to_cart_order = add_to_cart_order;
 	}
-	public String fromNode() {
-        return fromNodeId;
+	public String getFrom() {
+        return _from;
     }
-    public String toNode() {
-        return toNodeId;
+    public String getTo() {
+        return _to;
     }
     public boolean hasProp() {
     	try {
-    		if (this.reordered != null) {
+    		if (this.reordered == null) {
     			return true;
     		}
     	} catch (Exception e) {
@@ -61,11 +61,11 @@ public class Link implements Serializable{
     	}
     	return false;
     }
-	public void setFromNodeId(String newFrom) {
-		this.fromNodeId = newFrom;
+	public void set_from(String newFrom) {
+		this._from = newFrom;
 	}
-	public void setfromNodeId(String newTo) {
-		this.toNodeId = newTo;
+	public void set_to(String newTo) {
+		this._to = newTo;
 	}
 	public String getId() {
 		return this._id;

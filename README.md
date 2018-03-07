@@ -1,4 +1,6 @@
-# instacart
+# instacart analysis
+
+(Under Construction)*
 
 #### File description: 
 
@@ -8,6 +10,7 @@ Code in `/src/main/java/com/example/arangospark/temp/`
 2. `Csv.java`: Contains Parsing methods for all CSV files *specifically* in instacart data.
 3. `Arango.java`: It has basic ArangoDB functions used for building graph for instacart data. (eg. newDatabase, createNode, createLink, updateLink, updateNode etc.)
 4. `Analysis.java`: The two chart analysis is done in this file. 
+*Currently working on using Spark SQL instead of Core functions.*
 5. `App.java`: This contains the main function and takes arguments `arg1` and `arg2`: 
     * `0 path/to/instacart/folder`: For building graph in ArangoDB.
     * `1 path/to/save/chart1/`: For building chart 1 analysis. 

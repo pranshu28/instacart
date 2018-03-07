@@ -15,6 +15,10 @@ import org.apache.spark.api.java.function.PairFunction;
 import com.arangodb.spark.rdd.api.java.ArangoJavaRDD;
 
 import scala.Tuple2;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
+
 
 public class Analysis  implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -24,31 +28,65 @@ public class Analysis  implements Serializable{
 	public Analysis(ArangoJavaRDD<Node> rddv, ArangoJavaRDD<Link> rdde,String chart,String path) throws IOException {
 		this.nodes = rddv;
 		this.links = rdde;
+		SparkSession spark = SparkSession.builder().getOrCreate();
+		Dataset<Row> nodeDF = spark.createDataFrame(this.nodes, Node.class);
+		Dataset<Row> linkDF = spark.createDataFrame(this.links, Link.class);
+		nodeDF.createOrReplaceTempView("node");
+		linkDF.createOrReplaceTempView("link");
 		if(chart.equals("1")) {
+//			chart_sql1(path,spark);
 			chart1(path);
 		}
 		else {
+//			chart_sql2(path,spark);
 			chart2(path);
 		}
 	}
+	public void chart_sql1(String path,SparkSession spark) {
+		Dataset<Row> aisles = spark.sql("select from,to from link where key like concat('aisle', '%')");
+		aisles.createOrReplaceTempView("aisle_");
+		Dataset<Row> orders = spark.sql("select from,to,reordered from link where key like concat('order','%','product','%') and reordered != 'NULL'");
+		orders.createOrReplaceTempView("order_");
+		Dataset<Row> data = spark.sql("select node.aisle,cast(order_.reordered AS integer) from aisle_ inner join order_ on (aisle_.to = order_.to) inner join node on (aisle_.from = node.id)");
+		data.createOrReplaceTempView("data1");
+		Dataset<Row> analysis = spark.sql("select aisle,count(reordered) as purchased,avg(reordered) as percent_reordered from data1 group by aisle");
+		analysis.show();
+	}
+	public void chart_sql2(String path,SparkSession spark) {
+		Dataset<Row> links = spark.sql("select from,to from link where key like concat('order','%','product','%')");
+		links.createOrReplaceTempView("ordpro");
+		Dataset<Row> pairs = spark.sql("select n2.product_name,cast(n1.order_hour_of_day AS integer) from ordpro inner join node n1 on (ordpro.from=n1.id) inner join node n2 on (ordpro.to=n2.id) where n2.product_name!='NULL' and n1.order_hour_of_day!='NULL'");
+		pairs.createOrReplaceTempView("data2");
+		Dataset<Row> early = spark.sql("select product_name,count(order_hour_of_day) as cnt from data2 where order_hour_of_day<=12 group by product_name order by cnt desc limit 10");
+		early.createOrReplaceTempView("early");
+		Dataset<Row> late = spark.sql("select product_name,count(order_hour_of_day) as cnt from data2 where order_hour_of_day>12 group by product_name order by cnt desc limit 10");
+		late.createOrReplaceTempView("late");
+		Dataset<Row> a_early = spark.sql("select data2.product_name,sort_array(collect_list(data2.order_hour_of_day)) as hours,count(data2.order_hour_of_day) as cntall from data2 inner join early on data2.product_name=early.product_name group by data2.product_name order by cntall");
+		a_early.createOrReplaceTempView("early");
+		Dataset<Row> b_early = spark.sql("select product_name,hours,cntall from early");
+		b_early.createOrReplaceTempView("early");
+		b_early.show();
+	}
+	
+	
 	@SuppressWarnings("serial")
 	public void chart1(String path) throws IOException {
 		/*---All Aisle nodes---*/
 		List<Node> aislename = nodes.filter(x -> x.getKey().contains("aisle")).collect();
 		/*---All aisle Links to products---*/
-		JavaRDD<Link> aisle = links.filter(temp -> temp.fromNode().contains("aisle"));
+		JavaRDD<Link> aisle = links.filter(temp -> temp.getFrom().contains("aisle"));
 		/*---Pairs of AisleName and ProductID---*/
 		List<Tuple2<String,String>> aisle_prod = aisle.filter(e -> e.getKey().contains("aisle")).mapToPair(
 			new PairFunction<Link,String,String>() {
 				public Tuple2<String,String> call(Link x) {
 					String a=null;
 					for (Node i:aislename) {
-						if (i.getId().contains(x.fromNode())) {
+						if (i.getId().contains(x.getFrom())) {
 							a = i.getaisle();
 							break;
 						}
 					}
-					return new Tuple2<String,String>(a,x.toNode());
+					return new Tuple2<String,String>(a,x.getTo());
 				}
 			}).collect();
 		/*---Pairs of AisleName and ReorderedList---*/
@@ -57,7 +95,7 @@ public class Analysis  implements Serializable{
 				public Tuple2<String, Integer> call(Link x) {
 					String a=null;
 					for (Tuple2<String, String> i:aisle_prod) {
-						if (i._2.contains(x.toNode())) {
+						if (i._2.contains(x.getTo())) {
 							a = i._1;
 							break;
 						}
@@ -88,21 +126,21 @@ public class Analysis  implements Serializable{
 		/*---All Order nodes---*/
 		List<Node> orderhour = nodes.filter(x -> x.isOrder()).collect();
 		/*---All Order-Product Links---*/
-		JavaRDD<Link> products = links.filter(temp -> (temp.fromNode().contains("order") && temp.toNode().contains("product")));
+		JavaRDD<Link> products = links.filter(temp -> (temp.getFrom().contains("order") && temp.getTo().contains("product")));
 		/*---Pairs of ProductName with corresponding OrderHour---*/
 		JavaPairRDD<String,Integer> product = products.mapToPair(
 			new PairFunction<Link,String,Integer>() {
 				public Tuple2<String,Integer> call(Link x) {
 					Integer hour=null;
 					for (Node i:orderhour) {
-						if (i.getId().contains(x.fromNode())) {
+						if (i.getId().contains(x.getFrom())) {
 							hour = Integer.parseInt(i.getorder_hour_of_day());
 							break;
 						}
 					}
 					String name=null;
 					for (Node i:productname) {
-						if (i.getId().contains(x.toNode())) {
+						if (i.getId().contains(x.getTo())) {
 							name = i.getproduct_name();
 							break;
 						}
@@ -167,6 +205,5 @@ public class Analysis  implements Serializable{
 			}
 		}
 		out.close();
-	}
-	
+	}	
 }
