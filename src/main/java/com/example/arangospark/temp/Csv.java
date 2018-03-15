@@ -30,7 +30,6 @@ public class Csv {
     		String[] row = line.split(",");
     		ArrayList<String> meta_key = new ArrayList<String>();
 			ArrayList<String> meta_value = new ArrayList<String>();
-			
     		/*---First columns in all CSVs will define a new Node, calling it as main_node---*/
     		db.createNode(new Node(header[0]+"_"+row[0]));
 			String main_node = "vertices/"+header[0]+"_"+row[0];
@@ -68,7 +67,12 @@ public class Csv {
 					else if (!id.equals("_id") && !db.updated(header[0]+"_"+row[0])){
 						meta_key.add(header[d]);
 						try {
-							meta_value.add(row[d]);
+							if (file.contains("products.csv")) {
+								meta_value.add(row[d]+" ");
+							}
+							else {
+								meta_value.add(row[d]);
+							}
 						} catch (Exception e) {
 							meta_value.add(" "); //There were some missing values too in Orders.csv
 						}
