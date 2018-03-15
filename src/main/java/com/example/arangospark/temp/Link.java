@@ -53,7 +53,7 @@ public class Link implements Serializable{
     }
     public boolean hasProp() {
     	try {
-    		if (this.reordered == null) {
+    		if (this.reordered != null || this.add_to_cart_order != null) {
     			return true;
     		}
     	} catch (Exception e) {
