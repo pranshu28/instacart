@@ -1,0 +1,25 @@
++--------------------+---------+------------------+
+|               aisle|purchased| percent_reordered|
++--------------------+---------+------------------+
+|   packaged poultry |      742| 61.99460916442049|
+|canned meat seafood |      459| 50.76252723311547|
+|      feminine care |      125|47.199999999999996|
+|     more household |      107|31.775700934579437|
+|vitamins suppleme...|      295| 34.23728813559322|
+|       latino foods |      435|  43.2183908045977|
+|               milk |     4993| 78.75025035049069|
+|   fresh vegetables |    21259| 60.27094407074651|
+|       indian foods |       92| 41.30434782608695|
+|  trash bags liners |      233|  35.1931330472103|
+|       oral hygiene |      468|  32.9059829059829|
+|frozen appetizers...|     1219|56.193601312551266|
+|            spirits |      154| 54.54545454545454|
+|        fresh herbs |     2405|53.305613305613306|
+|  cleaning products |      742| 35.44474393530997|
+|    poultry counter |      816|61.642156862745104|
+|   breakfast bakery |     1522| 64.84888304862024|
+|          skin care |       82| 20.73170731707317|
+|canned jarred veg...|     1835| 43.48773841961852|
+|grains rice dried...|      879| 39.93174061433447|
++--------------------+---------+------------------+
+only showing top 20 rows

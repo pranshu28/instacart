@@ -1,0 +1,30 @@
+Early:
++--------------------+-----------+------+
+|        product_name|      hours|cntall|
++--------------------+-----------+------+
+|Vanilla Almond Br...|       [10]|     1|
+|Chunky Peanut Butter|       [11]|     1|
+|  Organic Whole Milk|        [6]|     1|
+|Lactose Free Low ...|       [10]|     1|
+|Organic Large Ext...|    [6, 10]|     2|
+|         Large Lemon|    [9, 12]|     2|
+|    Organic Cilantro|    [0, 10]|     2|
+|Bag of Organic Ba...|[6, 10, 16]|     3|
+|Organic Small Bun...|[0, 10, 13]|     3|
+|Organic Strawberries|[6, 10, 17]|     3|
++--------------------+-----------+------+
+Late:
++--------------------+------------+------+
+|        product_name|       hours|cntall|
++--------------------+------------+------+
+|Flame Grilled Chi...|        [17]|     1|
+|Breakfast Hot & S...|        [18]|     1|
+|Organic Green But...|        [17]|     1|
+|        Blackberries|        [13]|     1|
+|      Red Grapefruit|        [13]|     1|
+|Organic Half Spri...|        [17]|     1|
+|Organic Baby Arugula|    [13, 16]|     2|
+|Organic Whipped N...|    [13, 17]|     2|
+|     Distilled Water|    [16, 18]|     2|
+|Organic Hass Avocado|[12, 13, 16]|     3|
++--------------------+------------+------+
