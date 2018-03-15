@@ -1,118 +1,124 @@
 aisle,product_purchased,reordered
-bread,59,88.13559
-canned meat seafood,6,50.0
-latino foods,3,0.0
-frozen breads doughs,5,20.0
-digestion,8,50.0
-red wines,7,85.71429
-oils vinegars,33,51.515152
-bulk dried fruits vegetables,2,100.0
-hair care,4,25.0
-yogurt,151,82.1192
-eggs,87,77.0115
-hot dogs bacon sausage,38,65.789474
-fresh vegetables,272,63.97059
-cream,43,69.76744
-cleaning products,47,34.042553
-grains rice dried goods,15,33.333332
-frozen vegan vegetarian,2,100.0
-buns rolls,12,41.666668
-cat food care,15,80.0
-fresh dips tapenades,34,79.411766
-frozen appetizers sides,16,43.75
-feminine care,6,16.666666
-dog food care,20,45.0
-canned meals beans,16,50.0
-baby bath body care,3,66.666664
-frozen meals,28,82.14286
-packaged cheese,68,72.05882
-popcorn jerky,22,77.27273
-more household,9,44.444443
-seafood counter,7,57.142857
-air fresheners candles,2,50.0
-condiments,25,36.0
-canned fruit applesauce,7,100.0
-vitamins supplements,17,58.82353
-mint gum,4,75.0
-refrigerated pudding desserts,10,60.0
-juice nectars,47,51.06383
-breakfast bakery,32,81.25
-crackers,51,62.7451
-soft drinks,57,78.947365
-pickled goods olives,11,63.636364
-breakfast bars pastries,4,100.0
-dish detergents,15,26.666666
-deodorants,14,57.142857
-energy sports drinks,22,54.545456
-hot cereal pancake mixes,9,66.666664
-frozen pizza,16,68.75
-bulk grains rice dried goods,1,100.0
-packaged poultry,15,73.333336
-facial care,1,0.0
-candy chocolate,31,80.645164
-food storage,10,30.0
-body lotions soap,4,75.0
-baby accessories,2,100.0
-shave needs,1,0.0
-packaged produce,64,82.8125
-frozen breakfast,21,61.904762
-canned jarred vegetables,21,52.38095
-other creams cheeses,24,62.5
-spirits,10,70.0
-cookies cakes,22,54.545456
-specialty wines champagnes,6,50.0
-frozen dessert,3,66.666664
-coffee,53,77.35849
-meat counter,7,57.142857
-protein meal replacements,10,50.0
-fresh fruits,552,85.50725
-dry pasta,37,51.351353
-chips pretzels,55,72.72727
-frozen produce,49,61.22449
-beers coolers,9,55.555557
-soup broth bouillon,27,48.148148
-trail mix snack mix,8,87.5
-packaged seafood,3,66.666664
-soy lactosefree,116,75.0
-first aid,5,80.0
-asian foods,21,42.857143
-spreads,26,38.46154
-salad dressing toppings,18,72.22222
-baking ingredients,50,32.0
-skin care,1,0.0
-nuts seeds dried fruit,41,70.731705
-refrigerated,136,77.20588
-milk,171,85.96491
-muscles joints pain relief,23,65.21739
-diapers wipes,6,50.0
-ice cream ice,71,50.704224
-preserved dips spreads,10,60.0
-soap,7,28.571428
-butter,32,68.75
-oral hygiene,19,42.105263
-trash bags liners,11,36.363636
-granola,11,81.818184
-kosher foods,2,0.0
-ice cream toppings,1,0.0
-spices seasonings,23,34.782608
-fruit vegetable snacks,43,74.4186
-water seltzer sparkling water,211,81.990524
-doughs gelatins bake mixes,20,65.0
-packaged vegetables fruits,182,75.82417
-tofu meat alternatives,10,70.0
-baby food formula,19,68.42105
-baking supplies decor,3,66.666664
-honeys syrups nectars,6,83.333336
-cocoa drink mixes,1,0.0
-paper goods,34,64.70588
-laundry,14,71.42857
-tortillas flat bread,16,68.75
-cereal,34,55.882355
-white wines,6,83.333336
-missing,18,66.666664
-lunch meat,56,67.85714
-plates bowls cups flatware,9,22.222221
-poultry counter,14,57.142857
-fresh herbs,34,52.941177
-tea,34,67.64706
-frozen meat seafood,9,22.222221
+hot cereal pancake mixes ,924,48.16017
+cereal ,2269,58.087265
+cocoa drink mixes ,1516,46.833775
+fresh dips tapenades ,2147,61.341408
+vitamins supplements ,611,44.189854
+frozen appetizers sides ,1186,55.05902
+meat counter ,496,54.83871
+food storage ,391,29.667519
+buns rolls ,850,55.411766
+packaged cheese ,6137,58.269512
+beers coolers ,328,56.707317
+granola ,573,60.034904
+tortillas flat bread ,1292,57.50774
+laundry ,615,44.878048
+spices seasonings ,1553,25.563425
+plates bowls cups flatware ,260,45.0
+asian foods ,1192,40.10067
+bread ,3353,68.3567
+oral hygiene ,978,52.556236
+deodorants ,171,42.69006
+oils vinegars ,1438,36.787205
+trail mix snack mix ,200,60.5
+skin care ,114,31.578947
+cream ,1829,67.85129
+spirits ,235,52.765957
+dog food care ,331,57.401814
+preserved dips spreads ,787,49.301144
+soft drinks ,2095,63.102627
+diapers wipes ,663,43.137257
+energy sports drinks ,840,63.809525
+protein meal replacements ,282,54.255318
+prepared meals ,1067,61.105904
+frozen breads doughs ,240,60.0
+more household ,174,44.827587
+spreads ,1681,50.743607
+fresh fruits ,21634,73.30591
+popcorn jerky ,934,57.173447
+baby bath body care ,178,35.393257
+salad dressing toppings ,826,43.583534
+cleaning products ,807,37.422554
+indian foods ,321,53.271027
+beauty ,60,33.333332
+ice cream ice ,3498,50.37164
+fruit vegetable snacks ,1237,60.7114
+kosher foods ,85,48.235294
+frozen pizza ,1044,62.931034
+baking ingredients ,1831,29.437466
+soy lactosefree ,3505,71.12696
+packaged vegetables fruits ,10832,64.558716
+mint gum ,156,58.333332
+white wines ,274,62.40876
+juice nectars ,2075,60.385544
+packaged poultry ,763,64.613365
+canned meals beans ,1566,55.172413
+frozen dessert ,105,48.57143
+refrigerated ,6035,63.678543
+bulk grains rice dried goods ,105,52.38095
+ice cream toppings ,88,29.545454
+frozen breakfast ,1436,64.972145
+baking supplies decor ,124,20.967741
+dry pasta ,1716,53.613052
+canned fruit applesauce ,661,55.219364
+eggs ,2862,72.53669
+specialty wines champagnes ,75,46.666668
+pickled goods olives ,861,49.012775
+grains rice dried goods ,884,41.17647
+lunch meat ,2531,62.109837
+baby food formula ,2106,57.692307
+packaged produce ,1780,68.53933
+doughs gelatins bake mixes ,722,45.567867
+honeys syrups nectars ,491,33.60489
+cookies cakes ,1400,54.142857
+frozen juice ,253,32.806324
+air fresheners candles ,173,45.66474
+coffee ,1568,64.34949
+packaged seafood ,149,53.691277
+latino foods ,391,38.87468
+missing ,973,41.418293
+trash bags liners ,255,37.2549
+fresh herbs ,2239,54.086647
+other creams cheeses ,1793,58.672615
+frozen meals ,2542,56.845005
+yogurt ,7948,67.79064
+shave needs ,74,28.378378
+feminine care ,143,41.25874
+refrigerated pudding desserts ,300,52.333332
+digestion ,226,49.55752
+breakfast bakery ,1626,64.32964
+frozen produce ,3177,55.114887
+frozen vegan vegetarian ,546,59.70696
+candy chocolate ,1981,55.174156
+hair care ,266,34.586468
+seafood counter ,182,59.34066
+first aid ,206,45.14563
+muscles joints pain relief ,101,37.623764
+baby accessories ,81,62.962963
+tea ,1568,54.783165
+frozen meat seafood ,455,50.32967
+paper goods ,1523,53.447144
+red wines ,383,54.308094
+soup broth bouillon ,2233,44.24541
+facial care ,101,40.59406
+crackers ,2842,59.21886
+water seltzer sparkling water ,5066,73.72681
+body lotions soap ,511,44.81409
+milk ,4177,78.812546
+hot dogs bacon sausage ,2062,59.941803
+fresh vegetables ,20738,60.179382
+nuts seeds dried fruit ,1908,50.262054
+poultry counter ,807,61.833954
+condiments ,1377,35.43936
+dish detergents ,535,38.13084
+eye ear care ,1319,47.68764
+canned meat seafood ,426,50.704224
+canned jarred vegetables ,1654,43.168076
+tofu meat alternatives ,794,62.59446
+breakfast bars pastries ,427,57.37705
+chips pretzels ,4484,59.41124
+bulk dried fruits vegetables ,113,54.867256
+other ,325,42.46154
+butter ,1397,59.985683
+cat food care ,649,67.642525
+soap ,508,38.97638
