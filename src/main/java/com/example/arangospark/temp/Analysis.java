@@ -49,7 +49,7 @@ public class Analysis  implements Serializable{
 		orders.createOrReplaceTempView("order_");
 		Dataset<Row> data = spark.sql("select node.aisle,cast(order_.reordered AS integer) from aisle_ inner join order_ on (aisle_.to = order_.to) inner join node on (aisle_.from = node.id)");
 		data.createOrReplaceTempView("data1");
-		Dataset<Row> analysis = spark.sql("select aisle,count(reordered) as purchased,avg(reordered) as percent_reordered from data1 group by aisle");
+		Dataset<Row> analysis = spark.sql("select aisle,count(reordered) as purchased,avg(reordered)*100 as percent_reordered from data1 group by aisle");
 		analysis.show();
 	}
 	public void chart_sql2(String path,SparkSession spark) {
@@ -95,13 +95,15 @@ public class Analysis  implements Serializable{
 			new PairFunction<Link, String, Integer>() {
 				public Tuple2<String, Integer> call(Link x) {
 					String a=null;
+					Integer b=null;
 					for (Tuple2<String, String> i:aisle_prod) {
-						if (i._2.contains(x.getTo())) {
+						if (i._2.contains(x.getTo()) && x.hasProp()) {
 							a = i._1;
+							b = Integer.parseInt(x.getreordered().split(" ")[0]);
 							break;
 						}
 					}
-					return new Tuple2<String, Integer>(a, Integer.parseInt(x.getreordered()));
+					return new Tuple2<String, Integer>(a, b);
 				}
 			}).groupByKey();
 		
@@ -133,9 +135,9 @@ public class Analysis  implements Serializable{
 			new PairFunction<Link,String,Integer>() {
 				public Tuple2<String,Integer> call(Link x) {
 					Integer hour=null;
-					for (Node i:orderhour) {
-						if (i.getId().contains(x.getFrom())) {
-							hour = Integer.parseInt(i.getorder_hour_of_day());
+					for (Node i:orderhour) { 
+						if (i.getId().contains(x.getFrom()) && i.isOrder()) {
+							hour = Integer.parseInt(i.getorder_hour_of_day().split(" ")[0]);
 							break;
 						}
 					}
@@ -164,7 +166,7 @@ public class Analysis  implements Serializable{
 		JavaPairRDD<Long, String> swapped_late = prod_late.mapToPair(swap).sortByKey(false);
 		
 
-		/*---This file will contain top 20 products with columns: Product Name, % order in Hours---*/
+		/*---This file will contain top 10 products with columns: Product Name, % order in Hours---*/
 		PrintWriter out = new PrintWriter(new FileWriter(path+"/chart2_data.txt"));
 		out.print("product,class,hour_distribution");
 		int j=0;
