@@ -111,7 +111,7 @@ public class Arango {
 	public void updateNode(String node,ArrayList<String> vertexkey,ArrayList<String> updates) {
 		String temp="";
 		for (int i=0;i<vertexkey.size();i++) {
-			temp = temp +" '" + vertexkey.get(i) + "':'" + updates.get(i).replaceAll("[\'\"\\-+.^:,]","") + " ',";
+			temp = temp +" '" + vertexkey.get(i) + "':'" + updates.get(i).replaceAll("[\'\"\\-+.^:,]","") + "',";
 		}
 		String query = "FOR u IN "+VERTEXT_COLLECTION_NAME+" FILTER u._key == '" + node + "' UPDATE u WITH { "
 				+ temp.substring(0,temp.length()-1) + "} IN "+VERTEXT_COLLECTION_NAME;
